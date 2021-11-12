@@ -1,0 +1,1 @@
+define(["require","blue/is","blue/resolver/module"],(function(e){"use strict";var r=e("blue/is"),n=new(e("blue/resolver/module"));return n.prefix="wire!",n.suffix="/pageConfig",function(e,i,u){if(!r.string(e))throw new TypeError("name must be a string");if(!r.function(i))throw new TypeError("callback must be a function");n.resolve(e).onValue((function(e){i.call(u,e)}))}}));

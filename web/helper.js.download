@@ -1,0 +1,94 @@
+/* Store common functions for language functionality. */
+
+define(['require','blue/resource/persona','blue-app/settings','blue/siteMode','blue/store/enumerable/cookie','appkit-utilities/personalization/personalization'],function(require) {
+	var personaInstance = new(require('blue/resource/persona')),
+		settings = require('blue-app/settings'),
+		siteMode = require('blue/siteMode'),
+		defaultLanguage = 'en-us';
+
+	var splashStore = new(require('blue/store/enumerable/cookie'))('splash', false, null, '/', '.chase.com', true);
+	var personalization = new(require('appkit-utilities/personalization/personalization'))();
+
+	/* @returns {String} 4 character language-region code, e.g. 'en-us' regardless of site/user state */
+	function getUserLanguage() {
+		return settings.get('language', settings.Type.PERM) || settings.get('language') || settings.get('languageDefault') || defaultLanguage;
+	};
+
+	/* @returns {Boolean} Whether the user is allowed to see foreign language content, based on segment and site mode. 'internationalizationSplash' set to true means 'english only', false means 'allow other languages'*/
+	function isUserAllowedForeignLanguage() {
+		return !siteMode.isModeEnabled('internationalizationSplash');
+	};
+
+	/* @returns {String} 4 character language-region code, e.g. 'en-us' */
+	function getLanguage() {
+		return isUserAllowedForeignLanguage() ? getUserLanguage() : defaultLanguage;
+	};
+
+	/* @returns {String} current language by replacing hyper (-) to underscore (_) e.g, "en_us" */
+	function getLanguagePrefix() {
+		return getLanguage().replace('-', '_');
+	};
+
+	/* @returns {String} 2 character language code, e.g. 'en' */
+	function getContentLanguage() {
+		return getLanguage().split('-')[0];
+	};
+
+	/* @returns {Boolean} whether the current language is equal to the argument. */
+	function isLanguageSetTo(language) {
+		if (typeof(language) !== 'string') {
+			throw new Error('argument "language" should be a 2 characters string, e.g. "en"');
+		}
+
+		return (getContentLanguage() === language);
+	};
+
+	/* @returns {Boolean} Whether the user's local cookie is something other than blank or the default language. */
+	function isPersonaLocaleForeignLanguage() {
+		var personaData = personaInstance.read();
+		var language = personaData && personaData.locale ? personaData.locale.replace('_', '-') : '';
+		return !!language && language !== defaultLanguage;
+	};
+
+	function isCurrentLanguageSetToDefault() {
+		var localeData = personalization.getLocale();
+		return (!!settings.get('languageDefault')) ? localeData === settings.get('languageDefault') : localeData === defaultLanguage;
+	};
+
+	function isInternationalizationEnabled(splashFlag) {
+		var unavailableSegments = settings.get('languageSplashUnavailableSegments');
+		var segment = personalization.getSegment() || '';
+		if (!unavailableSegments) {
+			throw new Error('setting "languageSplashUnavailableSegments" is undefined');
+		}
+
+		return !splashFlag && unavailableSegments.indexOf(segment.toUpperCase()) === -1;
+	};
+
+	function clearSplashViewed() {
+		splashStore.remove('internationalizationSplashSeen');
+	};
+
+	function setSplashViewed() {
+		splashStore.set('internationalizationSplashSeen', true);
+	};
+
+	function getSplashViewed() {
+		return splashStore.get('internationalizationSplashSeen');
+	};
+
+	return {
+		getLanguage: getLanguage,
+		getUserLanguage: getUserLanguage,
+		getLanguagePrefix: getLanguagePrefix,
+		isUserAllowedForeignLanguage: isUserAllowedForeignLanguage,
+		getContentLanguage: getContentLanguage,
+		isLanguageSetTo: isLanguageSetTo,
+		isPersonaLocaleForeignLanguage: isPersonaLocaleForeignLanguage,
+		isCurrentLanguageSetToDefault: isCurrentLanguageSetToDefault,
+		isInternationalizationEnabled: isInternationalizationEnabled,
+		clearSplashViewed: clearSplashViewed,
+		setSplashViewed: setSplashViewed,
+		getSplashViewed: getSplashViewed
+	};
+});

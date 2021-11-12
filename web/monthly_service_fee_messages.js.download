@@ -1,0 +1,70 @@
+define([], function() { return {
+  "name": "MONTHLY_SERVICE_FEE_MESSAGES",
+  "data": {
+    "monthlyServiceFeeMessageDetails": {
+      "type": "Description"
+    }
+  },
+  "actions": {
+    "closeMonthlyServiceFee": true,
+    "requestAdditionalBankingMonthlyServiceFee": true,
+    "requestMonthlyServiceFeeInformation": true,
+    "requestMonthlyServiceFeeFootnoteMessage": true
+  },
+  "states": {
+    "chaseSavingsMonthlyServiceFeeMessagesOverlay": true,
+    "premierSavingsMonthlyServiceFeeMessagesOverlay": true,
+    "totalCheckingsMonthlyServiceFeeMessagesOverlay": true,
+    "sapphireCheckingMonthlyServiceFeeMessagesOverlay": true,
+    "premierPlusMonthlyServiceFeeMessagesOverlay": true,
+    "chasePrivateCheckingMonthlyServiceFeeMessagesOverlay": true
+  },
+  "settings": {
+    "chaseSavingHeader": true,
+    "chaseSavingMonthlyServiceFeeMessage": true,
+    "chaseSavingCriteriaMessage": true,
+    "chaseSavingBeginningBalanceMessage": true,
+    "chaseSavingAutosaverOrAutomaticTransferMessage": true,
+    "chaseSavingOverdraftProtectionMessage": true,
+    "chaseSavingMinorAccountOwnerMessage": true,
+    "chaseSavingLinkedAccountMessage": true,
+    "premierSavingHeader": true,
+    "monthlyServiceFeeMessage": true,
+    "premierSavingCriteriaMessage": true,
+    "premierSavingBeginningBalanceMessage": true,
+    "premierSavingLinkedAccountMessage": true,
+    "premierSavingBeginningBalanceAmount": true,
+    "monthlyServiceFeeAccountMessage": true,
+    "totalCheckingHeader": true,
+    "totalCheckingMonthlyServiceFeeMessage": true,
+    "totalCheckingCriteriaMessage": true,
+    "totalCheckingDirectDepositsMessage": true,
+    "totalCheckingBeginningBalanceMessage": true,
+    "totalCheckingBeginningBalanceAmountMessage": true,
+    "totalCheckingAverageBeginningBalanceMessage": true,
+    "totalCheckingAverageBeginningBalanceAmount": true,
+    "totalCheckingLinkedAccountMessage": true,
+    "totalCheckingMiscellaneousFeeMessage": true,
+    "sapphireCheckingHeader": true,
+    "sapphireCheckingCriteriaMessage": true,
+    "sapphireCheckingBeginningBalanceMessage": true,
+    "sapphireCheckingBeginningBalanceAmount": true,
+    "sapphireCheckingLinkedBalancesMessage": true,
+    "chasePremierHeader": true,
+    "chasePremierCriteriaMessage": true,
+    "chasePremierBeginningBalanceMessage": true,
+    "chasePremierLinkedBalancesMessage": true,
+    "chasePremierAutomaticPaymentsMessage": true,
+    "chaseQualifyingMortgageMessage": true,
+    "additionalBankingMonthlyServiceFeeMessage": true,
+    "monthlyServiceFeeMessageErrorHeader": true,
+    "monthlyServiceFeeMessageErrorAdvisory": true,
+    "chasePrivateCheckingHeader": true,
+    "chasePrivateCheckingMonthlyServiceFeeMessage": true,
+    "chasePrivateCheckingBeginningBalanceAmount": true,
+    "chasePrivateCheckingCriteriaMessage": true,
+    "chasePrivateCheckingBeginningBalanceMessage": true,
+    "chasePrivateCheckingLinkedBalancesMessage": true,
+    "chasePrivateCheckingAutomaticPaymentsMessage": true
+  }
+}; });

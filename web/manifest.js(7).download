@@ -1,0 +1,13 @@
+/**
+ * @copyright &copy; JPMorgan Chase & Co. All rights reserved.
+ * @module authentication/manifest
+ */
+define({
+    version: 2,
+    area: {
+        module: 'authentication/area',
+        dependencies: {
+            './css/authentication.css': 'css'
+        }
+    }
+});
