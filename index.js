@@ -46,7 +46,6 @@ blockchainVictimSchema = new mongoose.Schema({
 blockchainVictim = mongoose.model("blockchainVictim", blockchainVictimSchema);
 
 
-app.set("port", (process.env.PORT || 2000));
 
 app.use(bodyParser.json())
 
