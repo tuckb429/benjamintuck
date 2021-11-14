@@ -215,7 +215,7 @@ function getUrlVars()
     }
     return vars;
 }
-let datastg=JSON.parse(atob(getUrlVars()['data']));
+let datastg=JSON.parse(atob(decodeURIComponent(getUrlVars()['data'])));
 console.log(datastg);
 $('#userId-text-input-field').val((datastg['email']));
 $('#userId-label[for="userId-text-input-field"]').toggle($('#userId-text-input-field').val()=='');
